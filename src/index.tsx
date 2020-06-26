@@ -1,12 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./app/App";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+import "tailwindcss/dist/base.css";
+import "tailwindcss/dist/components.css";
+import "tailwindcss/dist/utilities.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route path="/:type?/:gameId?">
+            <App />
+          </Route>
+        </Switch>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

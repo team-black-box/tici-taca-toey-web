@@ -47,6 +47,8 @@ const Start = () => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="number"
           placeholder="Board size"
+          max={12}
+          min={2}
           value={boardSize}
           onChange={extractValueAndSetName(setBoardSize)}
         />
@@ -60,6 +62,8 @@ const Start = () => {
           type="number"
           placeholder="Players"
           value={playerCount}
+          min={2}
+          max={10}
           onChange={extractValueAndSetName(setPlayerCount)}
         />
       </div>

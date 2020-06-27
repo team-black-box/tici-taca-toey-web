@@ -8,6 +8,7 @@ interface CurrentPlayerState {
   connected: boolean;
   name: string;
   playerId: string;
+  active: string;
   playing: string[];
   spectating: string[];
 }
@@ -16,6 +17,7 @@ const initialState: CurrentPlayerState = {
   connected: false,
   name: "",
   playerId: "",
+  active: "",
   playing: [],
   spectating: [],
 };
@@ -35,11 +37,13 @@ const reducer = (
     case MessageTypes.JOIN_GAME:
       return {
         ...state,
+        active: action.game.gameId,
         playing: uniq([...state.playing, action.game.gameId]),
       };
     case MessageTypes.SPECTATE_GAME: {
       return {
         ...state,
+        active: action.game.gameId,
         spectating: uniq([...state.playing, action.game.gameId]),
       };
     }
@@ -74,7 +78,17 @@ export const getCurrentPlayerName = createSelector(
   (cp) => cp.name
 );
 
+export const getCurrentPlayerId = createSelector(
+  getCurrentPlayer,
+  (cp) => cp.playerId
+);
+
 export const getCurrentlyPlayingGames = createSelector(
   getCurrentPlayer,
   (cp) => cp.playing
+);
+
+export const getActiveGameId = createSelector(
+  getCurrentPlayer,
+  (cp) => cp.active
 );

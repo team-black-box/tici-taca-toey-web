@@ -3,6 +3,7 @@ import "./App.css";
 
 import Header from "../features/header/Header";
 import Start from "../features/start/Start";
+import Game from "../features/game/Game";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -48,7 +49,17 @@ export default function App() {
             <div className="row-span-2 col-span-1"></div>
           </div>
         </div>
-        <div className="col-span-5 m-auto text-4xl">GAME AREA</div>
+        <div className="col-span-4 mx-auto text-4xl">
+          <Game />
+        </div>
+        <div className="col-span-1 text-2xl">
+          <div className="grid grid-cols-1 grid-rows-1 gap-4 mx-4">
+            <div className="row-span-1 col-span-1 h-48 border-b-2">
+              Active Games
+            </div>
+            <div className="row-span-1 col-span-1">Spectating</div>
+          </div>
+        </div>
       </div>
     </div>
   );

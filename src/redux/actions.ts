@@ -5,6 +5,7 @@ import {
   StartGameMessage,
   JoinGameMessage,
   SpectateGameMessage,
+  MakeMoveMessage,
 } from "../common/model";
 
 // actions
@@ -56,5 +57,21 @@ export const spectateGame = (gameId: string) => {
       gameId,
     };
     dispatch(spectateGameAction);
+  };
+};
+
+export const makeMove = (
+  gameId: string,
+  coordinateX: number,
+  coordinateY: number
+) => {
+  return (dispatch: Dispatch) => {
+    const makeMoveAction: MakeMoveMessage = {
+      type: MessageTypes.MAKE_MOVE,
+      coordinateX,
+      coordinateY,
+      gameId,
+    };
+    dispatch(makeMoveAction);
   };
 };

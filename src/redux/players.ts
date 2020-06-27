@@ -11,6 +11,7 @@ const reducer = (
     case MessageTypes.START_GAME:
     case MessageTypes.JOIN_GAME:
     case MessageTypes.SPECTATE_GAME:
+    case MessageTypes.MAKE_MOVE:
     case MessageTypes.GAME_COMPLETE: {
       return {
         ...state,

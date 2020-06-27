@@ -1,6 +1,6 @@
 import React from "react";
 import Brand from "./brand/Brand";
-import Persona from "../player/Player";
+import Persona from "../player-persona/Player";
 
 const Header = () => {
   return (

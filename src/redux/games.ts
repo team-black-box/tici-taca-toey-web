@@ -1,4 +1,6 @@
+import { createSelector } from "reselect";
 import { Response, MessageTypes, GameStore } from "../common/model";
+import { getActiveGameId } from "./currentPlayer";
 
 // reducer
 const initialState: GameStore = {};
@@ -11,6 +13,7 @@ const reducer = (
     case MessageTypes.START_GAME:
     case MessageTypes.JOIN_GAME:
     case MessageTypes.SPECTATE_GAME:
+    case MessageTypes.MAKE_MOVE:
     case MessageTypes.GAME_COMPLETE: {
       return {
         ...state,
@@ -27,3 +30,11 @@ export default reducer;
 // selector
 
 export const getGame = (state: any, gameId: string) => state.games[gameId];
+
+export const getAllGames = (state: any) => state.games;
+
+export const getActiveGame = createSelector(
+  getActiveGameId,
+  getAllGames,
+  (gameId, games) => games[gameId]
+);

@@ -24,6 +24,8 @@ interface SymbolDescriptors {
   color: string;
 }
 
+// https://tailwindcss.com/docs/customizing-colors#default-color-palette
+
 const GAME_SYMBOL: SymbolDescriptors[] = [
   { symbol: "X", color: "text-indigo-500" },
   { symbol: "O", color: "text-teal-500" },

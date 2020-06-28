@@ -1,32 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCurrentlyPlayingGames } from "../../redux/currentPlayer";
+import { useDispatch } from "react-redux";
 import { startGame } from "../../redux/actions";
-import { GameInteractionTypes } from "../../common/model";
+
+const DEFAULT_GAME_NAME = "My Amazing Game";
 
 const extractValueAndSetName = (setter: any) => (event: any) =>
   setter(event.target.value);
 
-const interact = (type: string, gameId: string) => () =>
-  window.open(`/${type}/${gameId}`, "_blank");
-
 const Start = () => {
-  const [name, setName] = useState("My Amazing Game");
+  const [name, setName] = useState(DEFAULT_GAME_NAME);
   const [boardSize, setBoardSize] = useState(3);
   const [playerCount, setPlayerCount] = useState(2);
-  const currentlyPlaying: string[] = useSelector(getCurrentlyPlayingGames);
 
   const dispatch = useDispatch();
 
   const startGameDelegate = () => {
     dispatch(startGame(name, boardSize, playerCount));
-    setName("");
-    setBoardSize(3);
-    setPlayerCount(2);
   };
 
   return (
-    <div className="grid grid-cols-2 grid-rows-2 mx-4 gap-4 pb-4 border-b-4">
+    <div className="grid grid-cols-2 grid-rows-2 mx-4 gap-4 pb-4">
       <div className="row-span-1 col-span-2">
         <label className="block text-gray-700 text-sm font-bold mb-2">
           Game name
@@ -67,44 +60,19 @@ const Start = () => {
           onChange={extractValueAndSetName(setPlayerCount)}
         />
       </div>
-      {currentlyPlaying.length === 0 && (
-        <div className="row-span-1 col-span-2 m-auto">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-2xl"
-            onClick={startGameDelegate}
-          >
-            Start new game
-          </button>
-        </div>
-      )}
-      {currentlyPlaying.length > 0 && (
-        <div className="row-span-1 col-span-1">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-md"
-            onClick={interact(
-              GameInteractionTypes.PLAY,
-              currentlyPlaying[currentlyPlaying.length - 1]
-            )}
-          >
-            Join Game
-          </button>
-        </div>
-      )}
-      {currentlyPlaying.length > 0 && (
-        <div className="row-span-1 col-span-1">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-md"
-            onClick={interact(
-              GameInteractionTypes.SPECTATE,
-              currentlyPlaying[currentlyPlaying.length - 1]
-            )}
-          >
-            Spectate Game
-          </button>
-        </div>
-      )}
+
+      <div className="row-span-1 col-span-2 mx-2">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-xl"
+          onClick={startGameDelegate}
+        >
+          Start new game <i className="fas fa-paper-plane" />
+        </button>
+      </div>
     </div>
   );
 };
 
 export default Start;
+
+// Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

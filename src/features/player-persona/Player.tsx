@@ -16,7 +16,7 @@ const Player = () => {
     <div className="flex flex-row-reverse ">
       <img src={generateIdenticon(name)} alt="identicon" />
       <input
-        className="uppercase py-2 px-4 text-gray-700 text-2xl text-right outline-none focus:shadow-outline"
+        className="uppercase py-2 px-4 text-gray-700 text-2xl text-right outline-none focus:shadow-outline w-1/2"
         type="text"
         value={name}
         onChange={(event) =>

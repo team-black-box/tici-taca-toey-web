@@ -8,7 +8,7 @@ const Header = () => {
       <div className="col-start-1 col-span-1">
         <Brand />
       </div>
-      <div className="col-end-5 col-span-1">
+      <div className="col-end-5 col-span-2">
         <Persona />
       </div>
     </div>

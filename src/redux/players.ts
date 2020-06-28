@@ -27,5 +27,5 @@ export default reducer;
 
 // selector
 
-export const getPlayer = (state: any, playerId: string) =>
+export const getPlayer = (playerId: string) => (state: any) =>
   state.players[playerId];

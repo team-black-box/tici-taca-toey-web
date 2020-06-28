@@ -38,3 +38,13 @@ export const getActiveGame = createSelector(
   getAllGames,
   (gameId, games) => games[gameId]
 );
+
+export const getActiveGamePlayers = createSelector(
+  getActiveGame,
+  (game) => game.players
+);
+
+export const getActiveGameSpectator = createSelector(
+  getActiveGame,
+  (game) => game.spectators
+);

@@ -19,21 +19,18 @@ export default function App() {
   const isConnected = useSelector(isConnectedToServer);
   const dispatch = useDispatch();
 
-  if (
-    type &&
-    gameId &&
-    isConnected &&
-    !currentlyPlayingGames.includes(gameId)
-  ) {
-    switch (type) {
-      case GameInteractionTypes.PLAY:
-        dispatch(joinGame(gameId));
-        break;
-      case GameInteractionTypes.SPECTATE:
-        dispatch(spectateGame(gameId));
-        break;
-      default:
-        console.log(`Unsupported game interaction type: ${type}`);
+  if (isConnected) {
+    if (type && gameId && !currentlyPlayingGames.includes(gameId)) {
+      switch (type) {
+        case GameInteractionTypes.PLAY:
+          dispatch(joinGame(gameId));
+          break;
+        case GameInteractionTypes.SPECTATE:
+          dispatch(spectateGame(gameId));
+          break;
+        default:
+          console.log(`Unsupported game interaction type: ${type}`);
+      }
     }
   }
 
@@ -46,7 +43,6 @@ export default function App() {
             <div className="row-span-1 mx-4 col-span-1">
               <Start />
             </div>
-            <div className="row-span-2 col-span-1"></div>
           </div>
         </div>
         <div className="col-span-4 mx-auto text-4xl">

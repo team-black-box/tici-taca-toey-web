@@ -10,6 +10,7 @@ import store from "./redux/store";
 import "tailwindcss/dist/base.css";
 import "tailwindcss/dist/components.css";
 import "tailwindcss/dist/utilities.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 ReactDOM.render(
   <React.StrictMode>

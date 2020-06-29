@@ -48,3 +48,8 @@ export const getActiveGameSpectator = createSelector(
   getActiveGame,
   (game) => game.spectators
 );
+
+export const getActiveGameTurn = createSelector(
+  getActiveGame,
+  (game) => game.turn
+);

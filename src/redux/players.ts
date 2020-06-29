@@ -16,6 +16,7 @@ const reducer = (
       return {
         ...state,
         ...action.players,
+        ...action.spectators,
       };
     }
     default:

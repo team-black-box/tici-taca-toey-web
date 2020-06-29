@@ -1,14 +1,20 @@
 import React from "react";
-import { getSymbol } from "../../../common/symbol";
+import { useSelector } from "react-redux";
+import { getPlayer } from "../../../redux/players";
+import { generateIdenticon } from "../../../common/identicon";
+export interface Spectator {
+  playerId: string;
+  players: string[];
+}
 
-import { PlayerSpectator } from "./ActivePlayer";
-
-const Spectator = ({ playerId, players }: PlayerSpectator) => {
-  const symbol = getSymbol(playerId, players);
+const Spectator = ({ playerId, players }: Spectator) => {
+  const playerName = useSelector(getPlayer(playerId)).name;
   return (
-    <div className="flex flex-col my-1">
-      <div className={symbol.color}>{symbol.symbol}</div>
-      <div>{symbol.symbol}</div>
+    <div className="text-center mx-5">
+      <img
+        src={generateIdenticon(playerName ? playerName : "", 32)}
+        alt="identicon"
+      />
     </div>
   );
 };

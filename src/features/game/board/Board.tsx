@@ -6,7 +6,7 @@ import { makeMove } from "../../../redux/actions";
 import { Game, GameStatus } from "../../../common/model";
 import { getSymbol, EMPTY_CELL } from "../../../common/symbol";
 
-interface SymbolProps {
+interface CellProps {
   playerId: string;
   players: string[];
   boardSize: number;
@@ -50,7 +50,7 @@ const dispatchableMove = (
   gameId: string
 ) => () => dispatch(makeMove(gameId, coordinateX, coordinateY));
 
-const Symbol = ({
+const Cell = ({
   playerId,
   players,
   boardSize,
@@ -60,7 +60,7 @@ const Symbol = ({
   coordinateX,
   coordinateY,
   gameId,
-}: SymbolProps) => {
+}: CellProps) => {
   const playerSymbol = getSymbol(playerId, players);
 
   const boardEnabled =
@@ -72,9 +72,9 @@ const Symbol = ({
 
   return (
     <div
-      className={`${getGridCellSize(boardSize)} ${
+      className={`${getGridCellSize(boardSize)} text-${
         playerSymbol.color
-      } border-2 cursor-pointer hover:shadow-outline hover:bg-blue-500 hover:bg-opacity-25 ${
+      }-500 border-2 cursor-pointer hover:shadow-outline hover:bg-blue-500 hover:bg-opacity-25 ${
         !boardEnabled ? "cursor-not-allowed" : ""
       }`}
       onClick={dispatchableMove(dispatch, coordinateX, coordinateY, gameId)}
@@ -94,7 +94,7 @@ const Board = () => {
       {game.positions
         .flatMap((each) => each)
         .map((each, index) => (
-          <Symbol
+          <Cell
             coordinateX={Math.floor(index / game.boardSize)}
             coordinateY={index % game.boardSize}
             playerId={each}

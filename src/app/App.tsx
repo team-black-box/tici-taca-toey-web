@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "../features/header/Header";
 import Start from "../features/start/Start";
 import Game from "../features/game/Game";
+import Join from "../features/join/Join";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -42,6 +43,9 @@ export default function App() {
           <div className="grid grid-rows-3 grid-flow-col gap-4">
             <div className="row-span-1 mx-4 col-span-1">
               <Start />
+            </div>
+            <div className="row-span-1 mx-4 col-span-1 border-t-2 pt-4">
+              <Join />
             </div>
           </div>
         </div>

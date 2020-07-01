@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { startGame } from "../../redux/actions";
+import { extractValueAndSet } from "../../common/extractValueAndSet";
 
 const DEFAULT_GAME_NAME = "My Amazing Game";
-
-const extractValueAndSetName = (setter: any) => (event: any) =>
-  setter(event.target.value);
 
 const Start = () => {
   const [name, setName] = useState(DEFAULT_GAME_NAME);
@@ -29,7 +27,7 @@ const Start = () => {
           type="text"
           placeholder="Enter name for game"
           value={name}
-          onChange={extractValueAndSetName(setName)}
+          onChange={extractValueAndSet(setName)}
         />
       </div>
       <div className="row-span-1 col-span-1 my-2">
@@ -43,7 +41,7 @@ const Start = () => {
           max={12}
           min={2}
           value={boardSize}
-          onChange={extractValueAndSetName(setBoardSize)}
+          onChange={extractValueAndSet(setBoardSize)}
         />
       </div>
       <div className="row-span-1 col-span-1 my-2">
@@ -57,7 +55,7 @@ const Start = () => {
           value={playerCount}
           min={2}
           max={10}
-          onChange={extractValueAndSetName(setPlayerCount)}
+          onChange={extractValueAndSet(setPlayerCount)}
         />
       </div>
 

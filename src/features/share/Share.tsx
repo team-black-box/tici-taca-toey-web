@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import { GameInteractionTypes, GameStatus } from "../../common/model";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -16,6 +16,13 @@ const Share = ({ gameId, gameStatus }: ShareProps) => {
       ? GameInteractionTypes.PLAY
       : GameInteractionTypes.SPECTATE
   );
+
+  useEffect(() => {
+    if (gameStatus !== GameStatus.WAITING_FOR_PLAYERS) {
+      setInteractionType(GameInteractionTypes.SPECTATE);
+    }
+  }, [gameStatus]);
+
   const url = `${window.location.origin}/${interactionType}/${gameId}`;
   return (
     <div className="relative">

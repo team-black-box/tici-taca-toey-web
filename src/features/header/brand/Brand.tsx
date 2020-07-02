@@ -8,7 +8,7 @@ const Brand = () => (
       target="_blank"
       rel="noopener noreferrer"
     >
-      <i className="fab fa-github" />
+      <i className="fab fa-github ml-4" />
     </a>
   </h1>
 );

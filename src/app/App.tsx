@@ -13,6 +13,7 @@ import {
 } from "../redux/currentPlayer";
 import { joinGame, spectateGame } from "../redux/actions";
 import { GameInteractionTypes } from "../common/model";
+import logo from "../common/logo.png";
 
 export default function App() {
   const { type, gameId } = useParams();
@@ -53,11 +54,72 @@ export default function App() {
           <Game />
         </div>
         <div className="col-span-1 text-2xl">
-          <div className="grid grid-cols-1 grid-rows-1 gap-4 mx-4">
-            <div className="row-span-1 col-span-1 h-48 border-b-2">
-              Active Games
+          Active Games
+          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
             </div>
-            <div className="row-span-1 col-span-1">Spectating</div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
+              <p className="text-base text-gray-600 leading-normal">
+                My Amazing Game
+              </p>
+            </div>
+          </div>
+          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
+            </div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
+              <p className="text-base text-gray-600 leading-normal">
+                My Amazing Game
+              </p>
+            </div>
+          </div>
+          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
+            </div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
+              <p className="text-base text-gray-600 leading-normal">
+                My Amazing Game
+              </p>
+            </div>
+          </div>
+          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
+            </div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
+              <p className="text-base text-gray-600 leading-normal">
+                My Amazing Game
+              </p>
+            </div>
+          </div>
+          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
+            </div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
+              <p className="text-base text-gray-600 leading-normal">
+                My Amazing Game
+              </p>
+            </div>
+          </div>
+          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
+            </div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
+              <p className="text-base text-gray-600 leading-normal">
+                My Amazing Game
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -90,61 +90,6 @@ export default function App() {
               </p>
             </div>
           </div>
-          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
-            <div className="flex-shrink-0">
-              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
-            </div>
-            <div className="ml-6 pt-1">
-              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
-              <p className="text-base text-gray-600 leading-normal">
-                My Amazing Game
-              </p>
-            </div>
-          </div>
-          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
-            <div className="flex-shrink-0">
-              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
-            </div>
-            <div className="ml-6 pt-1">
-              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
-              <p className="text-base text-gray-600 leading-normal">
-                My Amazing Game
-              </p>
-            </div>
-          </div>
-          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
-            <div className="flex-shrink-0">
-              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
-            </div>
-            <div className="ml-6 pt-1">
-              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
-              <p className="text-base text-gray-600 leading-normal">
-                My Amazing Game
-              </p>
-            </div>
-          </div>
-          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
-            <div className="flex-shrink-0">
-              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
-            </div>
-            <div className="ml-6 pt-1">
-              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
-              <p className="text-base text-gray-600 leading-normal">
-                My Amazing Game
-              </p>
-            </div>
-          </div>
-          <div className="mr-4 mt-2 flex p-6 bg-white rounded-lg shadow-xl cursor-pointer hover:shadow-outline">
-            <div className="flex-shrink-0">
-              <img className="h-12 w-12" src={logo} alt="ChitChat Logo" />
-            </div>
-            <div className="ml-6 pt-1">
-              <h4 className="text-sm text-gray-900 leading-tight">Playing</h4>
-              <p className="text-base text-gray-600 leading-normal">
-                My Amazing Game
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

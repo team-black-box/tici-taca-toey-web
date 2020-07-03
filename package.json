@@ -18,11 +18,8 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "@types/ws": "^7.2.5",
-    "husky": "^4.2.5",
     "identicon.js": "^2.3.3",
-    "lint-staged": "^10.2.11",
     "lodash.uniq": "^4.5.0",
-    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
@@ -67,5 +64,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
   }
 }

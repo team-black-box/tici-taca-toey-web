@@ -1,4 +1,4 @@
-import { Response, MessageTypes } from "../common/model";
+import { Response, MessageTypes, GameInteractionTypes } from "../common/model";
 import { createSelector } from "reselect";
 import uniq from "lodash.uniq";
 
@@ -9,6 +9,7 @@ interface CurrentPlayerState {
   name: string;
   playerId: string;
   active: string;
+  activeMode?: GameInteractionTypes;
   playing: string[];
   spectating: string[];
 }
@@ -18,6 +19,7 @@ const initialState: CurrentPlayerState = {
   name: "",
   playerId: "",
   active: "",
+  activeMode: undefined,
   playing: [],
   spectating: [],
 };
@@ -38,12 +40,14 @@ const reducer = (
       return {
         ...state,
         active: action.game.gameId,
+        activeMode: GameInteractionTypes.PLAY,
         playing: uniq([...state.playing, action.game.gameId]),
       };
     case MessageTypes.SPECTATE_GAME: {
       return {
         ...state,
         active: action.game.gameId,
+        activeMode: GameInteractionTypes.SPECTATE,
         spectating: uniq([...state.playing, action.game.gameId]),
       };
     }
@@ -91,4 +95,9 @@ export const getCurrentlyPlayingGames = createSelector(
 export const getActiveGameId = createSelector(
   getCurrentPlayer,
   (cp) => cp.active
+);
+
+export const getActiveGameMode = createSelector(
+  getCurrentPlayer,
+  (cp) => cp.activeMode
 );

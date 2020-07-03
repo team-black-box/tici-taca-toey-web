@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 import Header from "../features/header/Header";
 import Start from "../features/start/Start";
 import Game from "../features/game/Game";
 import Join from "../features/join/Join";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getCurrentlyPlayingGames,
   isConnectedToServer,
+  getActiveGameId,
+  getActiveGameMode,
 } from "../redux/currentPlayer";
 import { joinGame, spectateGame } from "../redux/actions";
 import { GameInteractionTypes } from "../common/model";
@@ -19,22 +21,44 @@ export default function App() {
   const { type, gameId } = useParams();
   const currentlyPlayingGames = useSelector(getCurrentlyPlayingGames);
   const isConnected = useSelector(isConnectedToServer);
+  const activeGame = useSelector(getActiveGameId);
+  const activeGameMode = useSelector(getActiveGameMode);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  if (isConnected) {
-    if (type && gameId && !currentlyPlayingGames.includes(gameId)) {
-      switch (type) {
-        case GameInteractionTypes.PLAY:
-          dispatch(joinGame(gameId));
-          break;
-        case GameInteractionTypes.SPECTATE:
-          dispatch(spectateGame(gameId));
-          break;
-        default:
-          console.log(`Unsupported game interaction type: ${type}`);
+  useEffect(() => {
+    if (isConnected) {
+      if (type && gameId) {
+        if (!currentlyPlayingGames.includes(gameId) && gameId !== activeGame) {
+          switch (type) {
+            case GameInteractionTypes.PLAY:
+              dispatch(joinGame(gameId));
+              history.push(`/${GameInteractionTypes.PLAY}/${gameId}`);
+              break;
+            case GameInteractionTypes.SPECTATE:
+              dispatch(spectateGame(gameId));
+              history.push(`/${GameInteractionTypes.SPECTATE}/${gameId}`);
+              break;
+            default:
+              console.log(`Unsupported game interaction type: ${type}`);
+          }
+        }
+      } else {
+        if (activeGame && activeGameMode) {
+          history.push(`/${activeGameMode}/${activeGame}`);
+        }
       }
     }
-  }
+  }, [
+    type,
+    gameId,
+    currentlyPlayingGames,
+    activeGame,
+    isConnected,
+    dispatch,
+    history,
+    activeGameMode,
+  ]);
 
   return (
     <div className="w-full h-full">

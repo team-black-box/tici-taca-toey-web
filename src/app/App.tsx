@@ -84,6 +84,10 @@ export default function App() {
           <Listing />
         </div>
       </div>
+      <div className="absolute bottom-0 text-center w-full">
+        Made with <i className="fas fa-heart text-red-500" /> in Bengaluru,
+        India
+      </div>
     </div>
   );
 }

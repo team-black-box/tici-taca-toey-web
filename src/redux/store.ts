@@ -7,7 +7,7 @@ import currentPlayerReducer from "./currentPlayer";
 import gamesReducer from "./games";
 import playersReducer from "./players";
 
-const socket = new WebSocket(`wss://api.ticitacatoey.com:8080`);
+const socket = new WebSocket(`wss://api.ticitacatoey.com`);
 
 const webSocketMiddleware = (store: any) => (next: any) => (action: any) => {
   if (

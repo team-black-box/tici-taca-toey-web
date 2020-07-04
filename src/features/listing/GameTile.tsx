@@ -3,7 +3,7 @@ import { Game } from "../../common/model";
 import { GAME_STATUS_COLOR_MAP } from "../../common/status";
 import { useSelector, useDispatch } from "react-redux";
 import { getGame } from "../../redux/games";
-import { getCurrentPlayerId, getActiveGameId } from "../../redux/currentPlayer";
+import { getActiveGameId } from "../../redux/currentPlayer";
 import { setActiveGame } from "../../redux/actions";
 
 interface GameTileProps {
@@ -12,7 +12,6 @@ interface GameTileProps {
 
 const GameTile = ({ gameId }: GameTileProps) => {
   const game: Game = useSelector((state) => getGame(state, gameId));
-  const currentPlayer: string = useSelector(getCurrentPlayerId);
   const activeGameId: string = useSelector(getActiveGameId);
   const gameStatus = GAME_STATUS_COLOR_MAP[game.status];
   const dispatch = useDispatch();
@@ -27,11 +26,8 @@ const GameTile = ({ gameId }: GameTileProps) => {
         <div className="text-base text-gray-600 leading-normal">
           {game.name}
         </div>
-        <div className="text-sm text-gray-900 leading-tight">
-          {game.players.includes(currentPlayer) ? "Playing" : "Spectating"} Game
-        </div>
         <div
-          className={`p-1 mt-1 text-xs rounded-sm text-center font-bold ${gameStatus.textColor} ${gameStatus.backgroundColor}`}
+          className={`p-1 mt-1 text-xs rounded-md text-center font-bold ${gameStatus.textColor} ${gameStatus.backgroundColor}`}
         >
           {gameStatus.text}
         </div>

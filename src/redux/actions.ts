@@ -51,7 +51,7 @@ export const joinGame = (gameId: string) => {
 };
 
 export const spectateGame = (gameId: string) => {
-  return (dispatch: Dispatch) => {
+  return (dispatch: any) => {
     const spectateGameAction: SpectateGameMessage = {
       type: MessageTypes.SPECTATE_GAME,
       gameId,

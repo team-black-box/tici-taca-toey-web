@@ -17,23 +17,25 @@ const Players = () => {
       <div className="cols-span-1 rows-span-1 my-4">
         Players
         <div className="w-full flex flex-row">
-          {players.map((each: string) => (
-            <ActivePlayer
-              key={each}
-              playerId={each}
-              players={players}
-              turn={turn}
-            />
-          ))}
+          {players &&
+            players.map((each: string) => (
+              <ActivePlayer
+                key={each}
+                playerId={each}
+                players={players}
+                turn={turn}
+              />
+            ))}
         </div>
       </div>
       {spectators.length > 0 && (
         <div className="cols-span-1 rows-span-1 my-4">
           Spectators
           <div className="w-full flex flex-row m-2">
-            {spectators.map((each: string) => (
-              <Spectator key={each} playerId={each} players={players} />
-            ))}
+            {spectators &&
+              spectators.map((each: string) => (
+                <Spectator key={each} playerId={each} players={players} />
+              ))}
           </div>
         </div>
       )}

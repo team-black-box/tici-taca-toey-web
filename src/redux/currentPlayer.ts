@@ -1,4 +1,9 @@
-import { Response, MessageTypes, GameInteractionTypes } from "../common/model";
+import {
+  Response,
+  MessageTypes,
+  GameInteractionTypes,
+  GameStatus,
+} from "../common/model";
 import { createSelector } from "reselect";
 import uniq from "lodash.uniq";
 
@@ -48,10 +53,23 @@ const reducer = (
       if (state.playing.includes(action.game.gameId)) {
         return state;
       } else {
+        const newGameToSpectate = !state.spectating.includes(
+          action.game.gameId
+        );
+        const gameEnded = [
+          GameStatus.GAME_WON,
+          GameStatus.GAME_ENDS_IN_A_DRAW,
+        ].includes(action.game.status);
         return {
           ...state,
-          active: action.game.gameId,
-          spectating: uniq([...state.spectating, action.game.gameId]),
+          active: newGameToSpectate ? action.game.gameId : state.active,
+          spectating: gameEnded
+            ? [
+                ...state.spectating.filter(
+                  (each) => each !== action.game.gameId
+                ),
+              ]
+            : uniq([...state.spectating, action.game.gameId]),
         };
       }
     }

@@ -7,16 +7,26 @@ import {
 } from "../../redux/currentPlayer";
 
 const Listing = () => {
-  const allGames = [
-    ...useSelector(getCurrentlyPlayingGames),
-    ...useSelector(getCurrentlySpectatingGames),
-  ];
+  const playing = useSelector(getCurrentlyPlayingGames);
+  const spectating = useSelector(getCurrentlySpectatingGames);
   return (
     <div>
-      Active Games
-      {allGames.map((each) => (
-        <GameTile gameId={each} key={each} />
-      ))}
+      {playing.length > 0 && (
+        <div>
+          Active Games
+          {playing.map((each: string) => (
+            <GameTile gameId={each} key={each} />
+          ))}
+        </div>
+      )}
+      {spectating.length > 0 && (
+        <div className="mt-4">
+          Spectating Games
+          {spectating.map((each: string) => (
+            <GameTile gameId={each} key={each} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

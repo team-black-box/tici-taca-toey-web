@@ -126,6 +126,11 @@ export interface UpdateNameAction {
   name: string;
 }
 
+export interface SetActiveGameAction {
+  type: MessageTypes.SET_ACTIVE_GAME;
+  gameId: string;
+}
+
 export interface ConnectedToServerAction {
   type: MessageTypes.CONNECTED_TO_SERVER;
 }
@@ -134,7 +139,8 @@ export type Response =
   | RegisterPlayerResponse
   | GameActionResponse
   | UpdateNameAction
-  | ConnectedToServerAction;
+  | ConnectedToServerAction
+  | SetActiveGameAction;
 
 export interface GameError {
   error: ErrorCodes;
@@ -155,6 +161,7 @@ export enum MessageTypes {
   GAME_COMPLETE = "GAME_COMPLETE", // response only
   UPDATE_NAME = "UPDATE_NAME", // client only
   CONNECTED_TO_SERVER = "CONNECTED_TO_SERVER", // client only
+  SET_ACTIVE_GAME = "SET_ACTIVE_GAME", // client only
 }
 
 export enum ErrorCodes {

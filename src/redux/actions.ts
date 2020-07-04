@@ -75,3 +75,9 @@ export const makeMove = (
     dispatch(makeMoveAction);
   };
 };
+
+export const setActiveGame = (gameId: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch({ type: MessageTypes.SET_ACTIVE_GAME, gameId });
+  };
+};

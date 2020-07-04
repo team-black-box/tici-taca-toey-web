@@ -19,7 +19,6 @@ const initialState: CurrentPlayerState = {
   name: "",
   playerId: "",
   active: "",
-  activeMode: undefined,
   playing: [],
   spectating: [],
 };
@@ -40,16 +39,21 @@ const reducer = (
       return {
         ...state,
         active: action.game.gameId,
-        activeMode: GameInteractionTypes.PLAY,
         playing: uniq([...state.playing, action.game.gameId]),
+        spectating: [
+          ...state.spectating.filter((each) => each !== action.game.gameId),
+        ],
       };
     case MessageTypes.SPECTATE_GAME: {
-      return {
-        ...state,
-        active: action.game.gameId,
-        activeMode: GameInteractionTypes.SPECTATE,
-        spectating: uniq([...state.playing, action.game.gameId]),
-      };
+      if (state.playing.includes(action.game.gameId)) {
+        return state;
+      } else {
+        return {
+          ...state,
+          active: action.game.gameId,
+          spectating: uniq([...state.spectating, action.game.gameId]),
+        };
+      }
     }
     case MessageTypes.GAME_COMPLETE:
       return {
@@ -61,6 +65,12 @@ const reducer = (
           ...state.spectating.filter((each) => each !== action.game.gameId),
         ],
       };
+    case MessageTypes.SET_ACTIVE_GAME: {
+      return {
+        ...state,
+        active: action.gameId,
+      };
+    }
     default:
       return state;
   }
@@ -92,6 +102,11 @@ export const getCurrentlyPlayingGames = createSelector(
   (cp) => cp.playing
 );
 
+export const getCurrentlySpectatingGames = createSelector(
+  getCurrentPlayer,
+  (cp) => cp.spectating
+);
+
 export const getActiveGameId = createSelector(
   getCurrentPlayer,
   (cp) => cp.active
@@ -99,5 +114,11 @@ export const getActiveGameId = createSelector(
 
 export const getActiveGameMode = createSelector(
   getCurrentPlayer,
-  (cp) => cp.activeMode
+  getActiveGameId,
+  (cp, active) =>
+    cp.playing.includes(active)
+      ? GameInteractionTypes.PLAY
+      : cp.spectating.includes(active)
+      ? GameInteractionTypes.SPECTATE
+      : undefined
 );

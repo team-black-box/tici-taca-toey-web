@@ -11,9 +11,11 @@ const socket = new WebSocket("ws://192.168.1.4:8080");
 
 const webSocketMiddleware = (store: any) => (next: any) => (action: any) => {
   if (
-    [MessageTypes.UPDATE_NAME, MessageTypes.CONNECTED_TO_SERVER].includes(
-      action.type
-    ) ||
+    [
+      MessageTypes.UPDATE_NAME,
+      MessageTypes.CONNECTED_TO_SERVER,
+      MessageTypes.SET_ACTIVE_GAME,
+    ].includes(action.type) ||
     action._socketResponse
   ) {
     return next(action);

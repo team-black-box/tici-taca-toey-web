@@ -8,6 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getCurrentlyPlayingGames,
+  getCurrentlySpectatingGames,
   isConnectedToServer,
   getActiveGameId,
   getActiveGameMode,
@@ -18,6 +19,7 @@ import { GameInteractionTypes } from "../common/model";
 export default function App() {
   const { type, gameId } = useParams();
   const currentlyPlayingGames = useSelector(getCurrentlyPlayingGames);
+  const currentlySpectatingGames = useSelector(getCurrentlySpectatingGames);
   const isConnected = useSelector(isConnectedToServer);
   const dispatch = useDispatch();
 
@@ -31,34 +33,35 @@ export default function App() {
     }
   }, [activeGame, activeGameMode, history]);
 
-  // useEffect(() => {
-  //   if (isConnected) {
-  //     if (type && gameId) {
-  //       if (!currentlyPlayingGames.includes(gameId) && gameId !== activeGame) {
-  //         switch (type) {
-  //           case GameInteractionTypes.PLAY:
-  //             dispatch(joinGame(gameId));
-  //             history.push(`/${GameInteractionTypes.PLAY}/${gameId}`);
-  //             break;
-  //           case GameInteractionTypes.SPECTATE:
-  //             dispatch(spectateGame(gameId));
-  //             history.push(`/${GameInteractionTypes.SPECTATE}/${gameId}`);
-  //             break;
-  //           default:
-  //             console.log(`Unsupported game interaction type: ${type}`);
-  //         }
-  //       }
-  //     }
-  //   }
-  // }, [
-  //   type,
-  //   gameId,
-  //   currentlyPlayingGames,
-  //   activeGame,
-  //   isConnected,
-  //   dispatch,
-  //   history,
-  // ]);
+  useEffect(() => {
+    if (isConnected) {
+      if (type && gameId) {
+        if (
+          !currentlyPlayingGames.includes(gameId) &&
+          !currentlySpectatingGames.includes(gameId)
+        ) {
+          switch (type) {
+            case GameInteractionTypes.PLAY:
+              dispatch(joinGame(gameId));
+              break;
+            case GameInteractionTypes.SPECTATE:
+              dispatch(spectateGame(gameId));
+              break;
+            default:
+              console.log(`Unsupported game interaction type: ${type}`);
+          }
+        }
+      }
+    }
+  }, [
+    type,
+    gameId,
+    currentlyPlayingGames,
+    currentlySpectatingGames,
+    activeGame,
+    isConnected,
+    dispatch,
+  ]);
 
   return (
     <div className="w-full h-full">

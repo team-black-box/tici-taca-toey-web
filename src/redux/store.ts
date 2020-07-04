@@ -36,12 +36,10 @@ const store = createStore(
 );
 
 socket.addEventListener("open", (event) => {
-  console.log("Connected to server");
   store.dispatch({ type: MessageTypes.CONNECTED_TO_SERVER });
 });
 
 socket.addEventListener("message", (event) => {
-  console.log("Received message from server", event.data);
   store.dispatch({ ...JSON.parse(event.data), _socketResponse: true });
 });
 

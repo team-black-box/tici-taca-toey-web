@@ -7,7 +7,7 @@ import currentPlayerReducer from "./currentPlayer";
 import gamesReducer from "./games";
 import playersReducer from "./players";
 
-const socket = new WebSocket(`wss://api.ticitacatoey.com`);
+const socket = new WebSocket(`ws://localhost:8080`);
 
 const webSocketMiddleware = (store: any) => (next: any) => (action: any) => {
   if (
@@ -40,6 +40,7 @@ socket.addEventListener("open", (event) => {
 });
 
 socket.addEventListener("message", (event) => {
+  console.log("Message from server:" + event.data);
   store.dispatch({ ...JSON.parse(event.data), _socketResponse: true });
 });
 

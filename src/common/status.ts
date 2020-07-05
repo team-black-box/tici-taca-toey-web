@@ -6,6 +6,11 @@ export const GAME_STATUS_COLOR_MAP: any = {
     textColor: "text-red-100",
     backgroundColor: "bg-red-500",
   },
+  [GameStatus.GAME_ABANDONED]: {
+    text: "GAME ABANDONED",
+    textColor: "text-red-100",
+    backgroundColor: "bg-red-500",
+  },
   [GameStatus.GAME_IN_PROGRESS]: {
     text: "GAME IN PROGRESS",
     textColor: "text-indigo-100",

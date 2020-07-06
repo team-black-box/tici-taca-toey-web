@@ -118,6 +118,7 @@ export interface GameActionResponse extends GameState {
     | MessageTypes.JOIN_GAME
     | MessageTypes.MAKE_MOVE
     | MessageTypes.SPECTATE_GAME
+    | MessageTypes.PLAYER_DISCONNECT
     | MessageTypes.GAME_COMPLETE;
 }
 
@@ -158,6 +159,7 @@ export enum MessageTypes {
   JOIN_GAME = "JOIN_GAME",
   MAKE_MOVE = "MAKE_MOVE",
   SPECTATE_GAME = "SPECTATE_GAME",
+  PLAYER_DISCONNECT = "PLAYER_DISCONNECT",
   GAME_COMPLETE = "GAME_COMPLETE", // response only
   UPDATE_NAME = "UPDATE_NAME", // client only
   CONNECTED_TO_SERVER = "CONNECTED_TO_SERVER", // client only

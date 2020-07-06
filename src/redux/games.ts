@@ -14,6 +14,7 @@ const reducer = (
     case MessageTypes.JOIN_GAME:
     case MessageTypes.SPECTATE_GAME:
     case MessageTypes.MAKE_MOVE:
+    case MessageTypes.PLAYER_DISCONNECT:
     case MessageTypes.GAME_COMPLETE: {
       return {
         ...state,
@@ -42,6 +43,11 @@ export const getActiveGame = createSelector(
 export const getActiveGamePlayers = createSelector(
   getActiveGame,
   (game) => game.players
+);
+
+export const getActiveGameStatus = createSelector(
+  getActiveGame,
+  (game) => game?.status
 );
 
 export const getActiveGameSpectator = createSelector(

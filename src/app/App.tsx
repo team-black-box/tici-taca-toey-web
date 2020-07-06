@@ -13,8 +13,9 @@ import {
   getActiveGameId,
   getActiveGameMode,
 } from "../redux/currentPlayer";
+import { getActiveGameStatus } from "../redux/games";
 import { joinGame, spectateGame } from "../redux/actions";
-import { GameInteractionTypes } from "../common/model";
+import { GameInteractionTypes, GameStatus } from "../common/model";
 
 export default function App() {
   const { type, gameId } = useParams();
@@ -25,6 +26,7 @@ export default function App() {
 
   const activeGame = useSelector(getActiveGameId);
   const activeGameMode = useSelector(getActiveGameMode);
+  const activeGameStatus = useSelector(getActiveGameStatus);
   const history = useHistory();
 
   useEffect(() => {
@@ -38,7 +40,8 @@ export default function App() {
       if (type && gameId) {
         if (
           !currentlyPlayingGames.includes(gameId) &&
-          !currentlySpectatingGames.includes(gameId)
+          !currentlySpectatingGames.includes(gameId) &&
+          activeGameStatus !== GameStatus.GAME_ABANDONED
         ) {
           switch (type) {
             case GameInteractionTypes.PLAY:
@@ -60,6 +63,7 @@ export default function App() {
     currentlySpectatingGames,
     activeGame,
     isConnected,
+    activeGameStatus,
     dispatch,
   ]);
 

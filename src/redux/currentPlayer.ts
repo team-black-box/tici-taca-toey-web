@@ -73,6 +73,7 @@ const reducer = (
         };
       }
     }
+    case MessageTypes.PLAYER_DISCONNECT:
     case MessageTypes.GAME_COMPLETE:
       return {
         ...state,

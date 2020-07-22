@@ -68,7 +68,16 @@ const Cell = ({
       ${getGridCellSize(game.boardSize)} 
       text-${playerSymbol.color}-500 
       border-2 cursor-pointer hover:shadow-outline hover:bg-blue-500 hover:bg-opacity-25 
-      ${!boardEnabled ? "cursor-not-allowed" : ""}`}
+      ${!boardEnabled ? "cursor-not-allowed" : ""}
+      ${
+        game &&
+        game.winningSequence &&
+        game.winningSequence.find(
+          (each) => each.x === coordinateX && each.y === coordinateY
+        )
+          ? "bg-indigo-200"
+          : ""
+      }`}
       onClick={dispatchableMove(
         dispatch,
         coordinateX,

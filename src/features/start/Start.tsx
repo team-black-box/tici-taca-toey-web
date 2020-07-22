@@ -9,11 +9,12 @@ const Start = () => {
   const [name, setName] = useState(DEFAULT_GAME_NAME);
   const [boardSize, setBoardSize] = useState(3);
   const [playerCount, setPlayerCount] = useState(2);
+  const [winningSequenceLength, setWinningSequenceLength] = useState(3);
 
   const dispatch = useDispatch();
 
   const startGameDelegate = () => {
-    dispatch(startGame(name, boardSize, playerCount));
+    dispatch(startGame(name, boardSize, playerCount, winningSequenceLength));
   };
 
   return (
@@ -30,6 +31,7 @@ const Start = () => {
           onChange={extractValueAndSet(setName)}
         />
       </div>
+
       <div className="row-span-1 col-span-1 my-2">
         <label className="block text-gray-700 text-sm font-bold mb-2">
           Board Size
@@ -39,7 +41,7 @@ const Start = () => {
           type="number"
           placeholder="Board size"
           max={12}
-          min={2}
+          min={3}
           value={boardSize}
           onChange={extractValueAndSet(setBoardSize)}
         />
@@ -58,7 +60,20 @@ const Start = () => {
           onChange={extractValueAndSet(setPlayerCount)}
         />
       </div>
-
+      <div className="row-span-1 col-span-1 my-2">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Win Sequence
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="number"
+          placeholder="Win Sequence"
+          max={boardSize}
+          min={3}
+          value={winningSequenceLength}
+          onChange={extractValueAndSet(setWinningSequenceLength)}
+        />
+      </div>
       <div className="row-span-1 col-span-2 mx-2">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-xl"

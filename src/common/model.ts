@@ -4,6 +4,7 @@ export interface Game {
   gameId: string;
   name: string;
   boardSize: number;
+  winningSequenceLength: number;
   positions: string[][];
   playerCount: number;
   players: string[];
@@ -71,6 +72,7 @@ export interface StartGameMessage {
   name: string;
   boardSize: number;
   playerCount: number;
+  winningSequenceLength: number;
   connection?: WebSocket;
   playerId?: string;
   gameId?: string;
@@ -175,6 +177,7 @@ export enum ErrorCodes {
   BAD_REQUEST = "BAD_REQUEST",
   BOARD_SIZE_LESS_THAN_2 = "BOARD_SIZE_LESS_THAN_2",
   PLAYER_COUNT_LESS_THAN_2 = "PLAYER_COUNT_LESS_THAN_2",
+  WIN_SEQ_LENGTH_MUST_BE_LESS_THAN_OR_EQUAL_TO_BOARD_SIZE = "WINNING_SEQUENCE_LENGTH_MUST_BE_LESS_THAN_OR_EQUAL_TO_BOARD_SIZE",
 }
 
 export enum GameStatus {

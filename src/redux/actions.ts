@@ -27,7 +27,8 @@ export const updateCurrentPlayerName = (name: string): any => {
 export const startGame = (
   name: string,
   boardSize: number,
-  playerCount: number
+  playerCount: number,
+  winningSequenceLength: number
 ) => {
   return (dispatch: Dispatch) => {
     const startGameAction: StartGameMessage = {
@@ -35,6 +36,7 @@ export const startGame = (
       name,
       boardSize,
       playerCount,
+      winningSequenceLength,
     };
     dispatch(startGameAction);
   };

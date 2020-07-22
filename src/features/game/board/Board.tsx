@@ -6,18 +6,6 @@ import { makeMove } from "../../../redux/actions";
 import { Game, GameStatus } from "../../../common/model";
 import { getSymbol, EMPTY_CELL } from "../../../common/symbol";
 
-interface CellProps {
-  playerId: string;
-  players: string[];
-  boardSize: number;
-  turn: string;
-  currentPlayer: string;
-  status: GameStatus;
-  coordinateX: number;
-  coordinateY: number;
-  gameId: string;
-}
-
 const getGridCellSize = (boardSize: number): string => {
   switch (boardSize) {
     case 1:
@@ -50,34 +38,43 @@ const dispatchableMove = (
   gameId: string
 ) => () => dispatch(makeMove(gameId, coordinateX, coordinateY));
 
+interface CellProps {
+  playerId: string;
+  currentPlayer: string;
+  coordinateX: number;
+  coordinateY: number;
+  game: Game;
+}
+
 const Cell = ({
-  playerId,
-  players,
-  boardSize,
-  turn,
-  currentPlayer,
-  status,
   coordinateX,
   coordinateY,
-  gameId,
+  playerId,
+  currentPlayer,
+  game,
 }: CellProps) => {
-  const playerSymbol = getSymbol(playerId, players);
+  const playerSymbol = getSymbol(playerId, game.players);
 
   const boardEnabled =
-    status === GameStatus.GAME_IN_PROGRESS &&
+    game.status === GameStatus.GAME_IN_PROGRESS &&
     playerId === EMPTY_CELL &&
-    turn === currentPlayer;
+    game.turn === currentPlayer;
 
   const dispatch = useDispatch();
 
   return (
     <div
-      className={`${getGridCellSize(boardSize)} text-${
-        playerSymbol.color
-      }-500 border-2 cursor-pointer hover:shadow-outline hover:bg-blue-500 hover:bg-opacity-25 ${
-        !boardEnabled ? "cursor-not-allowed" : ""
-      }`}
-      onClick={dispatchableMove(dispatch, coordinateX, coordinateY, gameId)}
+      className={`
+      ${getGridCellSize(game.boardSize)} 
+      text-${playerSymbol.color}-500 
+      border-2 cursor-pointer hover:shadow-outline hover:bg-blue-500 hover:bg-opacity-25 
+      ${!boardEnabled ? "cursor-not-allowed" : ""}`}
+      onClick={dispatchableMove(
+        dispatch,
+        coordinateX,
+        coordinateY,
+        game.gameId
+      )}
     >
       {playerSymbol.symbol}
     </div>
@@ -98,13 +95,9 @@ const Board = () => {
             coordinateX={Math.floor(index / game.boardSize)}
             coordinateY={index % game.boardSize}
             playerId={each}
-            players={game.players}
-            boardSize={game.boardSize}
-            turn={game.turn}
             currentPlayer={currentPlayer}
-            status={game.status}
+            game={game}
             key={index}
-            gameId={game.gameId}
           />
         ))}
     </div>

@@ -10,9 +10,14 @@ export interface Game {
   players: string[];
   spectators: string[];
   winner: string;
-  winningSequence: string;
+  winningSequence: WinningSequence[];
   status: GameStatus;
   turn: string;
+}
+
+interface WinningSequence {
+  x: number;
+  y: number;
 }
 
 export interface Player {

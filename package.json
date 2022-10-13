@@ -17,7 +17,7 @@
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
-    "@types/ws": "^7.2.5",
+    "@types/ws": "^8.5.3",
     "identicon.js": "^2.3.3",
     "lodash.uniq": "^4.5.0",
     "react": "^16.13.1",

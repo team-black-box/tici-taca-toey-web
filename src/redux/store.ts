@@ -1,5 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
-import { ToastContainer, toast, TypeOptions } from "react-toastify";
+import { toast, TypeOptions } from "react-toastify";
 import { composeWithDevTools } from "redux-devtools-extension";
 import ReduxThunk from "redux-thunk";
 
@@ -47,7 +47,7 @@ socket.addEventListener("open", (event) => {
 });
 
 socket.addEventListener("message", (event) => {
-  if (event.data.type === "ERROR") addNotification(event.data);
+  if (event.data.type === "ERROR") addNotification(event.data.message);
 
   store.dispatch({ ...JSON.parse(event.data), _socketResponse: true });
 });

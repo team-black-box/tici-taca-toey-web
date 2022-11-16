@@ -6,7 +6,7 @@ import Join from "../features/join/Join";
 import Listing from "../features/listing/Listing";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { ToastContainer, toast, TypeOptions } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import {
   getCurrentlyPlayingGames,
   getCurrentlySpectatingGames,

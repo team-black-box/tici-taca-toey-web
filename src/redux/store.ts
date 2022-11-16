@@ -47,8 +47,8 @@ socket.addEventListener("open", (event) => {
 });
 
 socket.addEventListener("message", (event) => {
-  // console.log("Message from server:" + event.data);
-  addNotification(event.data);
+  if (event.data.type === "ERROR") addNotification(event.data);
+
   store.dispatch({ ...JSON.parse(event.data), _socketResponse: true });
 });
 

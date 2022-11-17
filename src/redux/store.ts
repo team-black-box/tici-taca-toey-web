@@ -10,6 +10,12 @@ import playersReducer from "./players";
 
 const socket = new WebSocket(`ws://localhost:8080`);
 
+const addNotification = (message: string) => {
+  toast(message, {
+    type: "error" as TypeOptions,
+  });
+};
+
 const webSocketMiddleware = (store: any) => (next: any) => (action: any) => {
   if (
     [

@@ -6,6 +6,7 @@ import Join from "../features/join/Join";
 import Listing from "../features/listing/Listing";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import {
   getCurrentlyPlayingGames,
   getCurrentlySpectatingGames,
@@ -92,6 +93,7 @@ export default function App() {
         Made with <i className="fas fa-heart text-red-500" /> in Bengaluru,
         India
       </div>
+      <ToastContainer position="bottom-right" newestOnTop />
     </div>
   );
 }

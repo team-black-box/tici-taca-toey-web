@@ -26,4 +26,9 @@ export const GAME_STATUS_COLOR_MAP: any = {
     textColor: "text-teal-100",
     backgroundColor: "bg-teal-500",
   },
+  [GameStatus.GAME_WON_BY_TIMEOUT]: {
+    text: "GAME_WON_BY_TIMEOUT",
+    textColor: "text-teal-100",
+    backgroundColor: "bg-teal-500",
+  },
 };

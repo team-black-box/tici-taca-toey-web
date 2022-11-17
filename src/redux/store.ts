@@ -1,4 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
+import { toast, TypeOptions } from "react-toastify";
 import { composeWithDevTools } from "redux-devtools-extension";
 import ReduxThunk from "redux-thunk";
 
@@ -8,6 +9,12 @@ import gamesReducer from "./games";
 import playersReducer from "./players";
 
 const socket = new WebSocket(`ws://localhost:8080`);
+
+const addNotification = (message: string) => {
+  toast(message, {
+    type: "error" as TypeOptions,
+  });
+};
 
 const webSocketMiddleware = (store: any) => (next: any) => (action: any) => {
   if (
@@ -40,7 +47,8 @@ socket.addEventListener("open", (event) => {
 });
 
 socket.addEventListener("message", (event) => {
-  console.log("Message from server:" + event.data);
+  if (event.data.type === "ERROR") addNotification(event.data.message);
+
   store.dispatch({ ...JSON.parse(event.data), _socketResponse: true });
 });
 

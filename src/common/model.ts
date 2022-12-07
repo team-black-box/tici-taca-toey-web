@@ -1,5 +1,9 @@
 import WebSocket from "ws";
 
+export interface TimerBase {
+  isRunning: boolean;
+  timeLeft: number;
+}
 export interface Game {
   gameId: string;
   name: string;
@@ -13,6 +17,9 @@ export interface Game {
   winningSequence: WinningSequence[];
   status: GameStatus;
   turn: string;
+  timers: Record<string, TimerBase>;
+  timePerPlayer: number;
+  incrementPerPlayer: number;
 }
 
 interface WinningSequence {

@@ -15,8 +15,7 @@ const Players = () => {
   return (
     <div className="grid grid-rows-1 grid-cols-1">
       <div className="cols-span-1 rows-span-1 my-4">
-        Players
-        <div className="w-full flex flex-row">
+        <div className="w-full flex flex-row gap-1">
           {players &&
             players.map((each: string) => (
               <ActivePlayer

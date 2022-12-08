@@ -7,13 +7,15 @@ const Timer = (props: any) => {
   const timers = game.timers;
   return (
     <div className="flex flex-col">
-      {Object.entries(timers).map(([key, timer]: any) => {
-        return (
-          <text className={key === game.turn ? "text-red-900" : ""}>
-            {Math.max(0, timer.timeLeft / 1000)}
-          </text>
-        );
-      })}
+      {Object.entries(timers)
+        .filter(([key, timer]) => key === props.playerId)
+        .map(([key, timer]: any) => {
+          return (
+            <text className={key === game.turn ? "text-red-900" : ""}>
+              {Math.max(0, timer.timeLeft / 1000)}
+            </text>
+          );
+        })}
     </div>
   );
 };

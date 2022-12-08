@@ -11,7 +11,7 @@ const Timer = (props: any) => {
         .filter(([key, timer]) => key === props.playerId)
         .map(([key, timer]: any) => {
           return (
-            <text className={key === game.turn ? "text-red-900" : ""}>
+            <text className={key === game.turn ? "text-red-900" : "text-black"}>
               {Math.max(0, timer.timeLeft / 1000)}
             </text>
           );

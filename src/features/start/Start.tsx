@@ -9,12 +9,23 @@ const Start = () => {
   const [name, setName] = useState(DEFAULT_GAME_NAME);
   const [boardSize, setBoardSize] = useState(3);
   const [playerCount, setPlayerCount] = useState(2);
+  const [timePerPlayer, setTimePerPlayer] = useState(5);
+  const [incrementPerPlayer, setIncrementPerPlayer] = useState(1);
   const [winningSequenceLength, setWinningSequenceLength] = useState(3);
 
   const dispatch = useDispatch();
 
   const startGameDelegate = () => {
-    dispatch(startGame(name, boardSize, playerCount, winningSequenceLength));
+    dispatch(
+      startGame(
+        name,
+        boardSize,
+        playerCount,
+        winningSequenceLength,
+        timePerPlayer,
+        incrementPerPlayer
+      )
+    );
   };
 
   return (
@@ -58,6 +69,34 @@ const Start = () => {
           min={2}
           max={10}
           onChange={extractValueAndSet(setPlayerCount)}
+        />
+      </div>
+      <div className="row-span-1 col-span-1 my-2">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Time
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="number"
+          placeholder="Players"
+          value={timePerPlayer}
+          min={1}
+          max={10}
+          onChange={extractValueAndSet(setTimePerPlayer)}
+        />
+      </div>
+      <div className="row-span-1 col-span-1 my-2">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Increment
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="number"
+          placeholder="Players"
+          value={incrementPerPlayer}
+          min={1}
+          max={5}
+          onChange={extractValueAndSet(setIncrementPerPlayer)}
         />
       </div>
       <div className="row-span-1 col-span-1 my-2">

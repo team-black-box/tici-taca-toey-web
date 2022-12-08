@@ -29,7 +29,9 @@ export const startGame = (
   name: string,
   boardSize: number,
   playerCount: number,
-  winningSequenceLength: number
+  winningSequenceLength: number,
+  timePerPlayer: number,
+  incrementPerPlayer: number
 ) => {
   return (dispatch: Dispatch) => {
     const startGameAction: StartGameMessage = {
@@ -38,6 +40,8 @@ export const startGame = (
       boardSize,
       playerCount,
       winningSequenceLength,
+      timePerPlayer,
+      incrementPerPlayer,
     };
     dispatch(startGameAction);
   };

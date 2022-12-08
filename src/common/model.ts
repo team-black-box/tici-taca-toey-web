@@ -88,6 +88,8 @@ export interface StartGameMessage {
   connection?: WebSocket;
   playerId?: string;
   gameId?: string;
+  timePerPlayer?: number;
+  incrementPerPlayer?: number;
 }
 
 export interface JoinGameMessage {

@@ -1,11 +1,9 @@
 import React from "react";
 import { getSymbol } from "../../../common/symbol";
-import { generateIdenticon } from "../../../common/identicon";
 import { useSelector } from "react-redux";
 import { getAllGames } from "../../../redux/games";
-import { getPlayer } from "../../../redux/players";
+// import { getPlayer } from "../../../redux/players";
 import { getActiveGameId } from "../../../redux/currentPlayer";
-import Timer from "../timer/Timer";
 
 interface ActivePlayer {
   playerId: string;
@@ -15,7 +13,7 @@ interface ActivePlayer {
 
 const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   const symbol = getSymbol(playerId, players);
-  const playerName = useSelector(getPlayer(playerId)).name;
+  // const playerName = useSelector(getPlayer(playerId)).name;
   const activeGameId: string = useSelector(getActiveGameId);
   const game = useSelector(getAllGames)[activeGameId];
   const timers = game.timers;

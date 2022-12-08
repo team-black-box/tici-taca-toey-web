@@ -3,7 +3,6 @@ import React from "react";
 import Status from "./status/Status";
 import Board from "./board/Board";
 import Players from "./players/Players";
-import Timer from "./timer/Timer";
 import { useSelector } from "react-redux";
 import { getActiveGameId } from "../../redux/currentPlayer";
 

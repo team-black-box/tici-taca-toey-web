@@ -97,6 +97,13 @@ export interface JoinGameMessage {
   playerId?: string;
 }
 
+export interface UpdateTimeMessage {
+  type: MessageTypes.NOTIFY_TIME;
+  gameId: string;
+  connection?: WebSocket;
+  playerId?: string;
+}
+
 export interface SpectateGameMessage {
   type: MessageTypes.SPECTATE_GAME;
   gameId: string;
@@ -113,11 +120,20 @@ export interface MakeMoveMessage {
   playerId?: string;
 }
 
+interface PlayerTimeoutMessage {
+  type: MessageTypes.PLAYER_TIMEOUT;
+  playerId: string;
+  gameId: string;
+  connection?: WebSocket;
+}
+
 export type Message =
   | RegisterPlayerMessage
   | StartGameMessage
   | JoinGameMessage
   | SpectateGameMessage
+  | UpdateTimeMessage
+  | PlayerTimeoutMessage
   | MakeMoveMessage;
 
 // Responses
@@ -133,6 +149,7 @@ export interface GameActionResponse extends GameState {
     | MessageTypes.MAKE_MOVE
     | MessageTypes.SPECTATE_GAME
     | MessageTypes.PLAYER_DISCONNECT
+    | MessageTypes.NOTIFY_TIME
     | MessageTypes.GAME_COMPLETE;
 }
 
@@ -178,6 +195,8 @@ export enum MessageTypes {
   UPDATE_NAME = "UPDATE_NAME", // client only
   CONNECTED_TO_SERVER = "CONNECTED_TO_SERVER", // client only
   SET_ACTIVE_GAME = "SET_ACTIVE_GAME", // client only
+  NOTIFY_TIME = "NOTIFY_TIME",
+  PLAYER_TIMEOUT = "PLAYER_TIMEOUT",
 }
 
 export enum ErrorCodes {

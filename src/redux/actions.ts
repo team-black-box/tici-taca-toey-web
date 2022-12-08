@@ -6,6 +6,7 @@ import {
   JoinGameMessage,
   SpectateGameMessage,
   MakeMoveMessage,
+  UpdateTimeMessage,
 } from "../common/model";
 
 // actions
@@ -59,6 +60,16 @@ export const spectateGame = (gameId: string) => {
       gameId,
     };
     dispatch(spectateGameAction);
+  };
+};
+
+export const timeUpdate = (gameId: string) => {
+  return (dispatch: any) => {
+    const updateTimeAction: UpdateTimeMessage = {
+      type: MessageTypes.NOTIFY_TIME,
+      gameId,
+    };
+    dispatch(updateTimeAction);
   };
 };
 

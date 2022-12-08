@@ -1,7 +1,6 @@
 import React from "react";
 import { getAllGames } from "../../../redux/games";
 import { useSelector } from "react-redux";
-import { getCurrentPlayerId } from "../../../redux/currentPlayer";
 
 const Timer = (props: any) => {
   const game = useSelector(getAllGames)[props.gameId];

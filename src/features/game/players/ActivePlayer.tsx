@@ -3,10 +3,7 @@ import { getSymbol } from "../../../common/symbol";
 import { useSelector } from "react-redux";
 import { getAllGames } from "../../../redux/games";
 // import { getPlayer } from "../../../redux/players";
-import {
-  getActiveGameId,
-  getCurrentPlayerId,
-} from "../../../redux/currentPlayer";
+import { getActiveGameId } from "../../../redux/currentPlayer";
 
 const THOUSAND = 1000;
 
@@ -21,18 +18,12 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   // const playerName = useSelector(getPlayer(playerId)).name;
   const activeGameId: string = useSelector(getActiveGameId);
   const game = useSelector(getAllGames)[activeGameId];
-  const currentPlayer: string = useSelector(getCurrentPlayerId);
+
   const timers = game.timers;
   const activePlayerTurn = turn === playerId;
 
-  console.log(currentPlayer);
-
   return (
-    <div
-      className={`flex flex-col border-2 border-${symbol.color}-500 p-1 ${
-        currentPlayer === " " ? "bg-red-50" : ""
-      }`}
-    >
+    <div className={`border-2 border-${symbol.color}-500 p-1`}>
       <div className="flex flex-row items-center justify-center gap-2">
         <div className={`text-${symbol.color}-500 text-center`}>
           {symbol.symbol}

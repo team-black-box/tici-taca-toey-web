@@ -20,7 +20,7 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   const activePlayerTurn = turn === playerId;
   console.log(timers[playerId].timeLeft);
   return (
-    <div className={`flex flex-col border-2 border-${symbol.color}-500`}>
+    <div className={`flex flex-col border-2 border-${symbol.color}-500 px-1`}>
       <div className="flex flex-row items-center justify-center gap-2">
         <div className={`text-${symbol.color}-500 text-center`}>
           {symbol.symbol}

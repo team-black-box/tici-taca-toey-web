@@ -13,7 +13,6 @@ const Game = () => {
       <Status />
       <Players />
       <Board />
-      {/* <Timer gameId={activeGameId} /> */}
     </div>
   ) : (
     <div className="flex flex-col">No Game Selected</div>

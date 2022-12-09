@@ -3,7 +3,12 @@ import { getSymbol } from "../../../common/symbol";
 import { useSelector } from "react-redux";
 import { getAllGames } from "../../../redux/games";
 // import { getPlayer } from "../../../redux/players";
-import { getActiveGameId } from "../../../redux/currentPlayer";
+import {
+  getActiveGameId,
+  getCurrentPlayerId,
+} from "../../../redux/currentPlayer";
+
+const THOUSAND = 1000;
 
 interface ActivePlayer {
   playerId: string;
@@ -16,11 +21,18 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   // const playerName = useSelector(getPlayer(playerId)).name;
   const activeGameId: string = useSelector(getActiveGameId);
   const game = useSelector(getAllGames)[activeGameId];
+  const currentPlayer: string = useSelector(getCurrentPlayerId);
   const timers = game.timers;
   const activePlayerTurn = turn === playerId;
-  console.log(timers[playerId].timeLeft);
+
+  console.log(currentPlayer);
+
   return (
-    <div className={`flex flex-col border-2 border-${symbol.color}-500 px-1`}>
+    <div
+      className={`flex flex-col border-2 border-${symbol.color}-500 p-1 ${
+        currentPlayer === " " ? "bg-red-50" : ""
+      }`}
+    >
       <div className="flex flex-row items-center justify-center gap-2">
         <div className={`text-${symbol.color}-500 text-center`}>
           {symbol.symbol}
@@ -28,9 +40,9 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
         <div
           className={`text-center h-full w-10 text-sm uppercase text-${symbol.color}-100 flex flex-col items-center justify-center`}
         >
-          <text className={activePlayerTurn ? "text-red-900" : "text-black"}>
-            {Math.max(0, timers[playerId].timeLeft / 1000)}
-          </text>
+          <span className={activePlayerTurn ? "text-red-900" : "text-black"}>
+            {Math.max(0, timers[playerId].timeLeft / THOUSAND)}
+          </span>
         </div>
       </div>
     </div>

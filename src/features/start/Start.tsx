@@ -80,13 +80,13 @@ const Start = () => {
           type="number"
           placeholder="Players"
           value={timePerPlayer}
-          min={1}
+          min={0}
           max={10}
           onChange={extractValueAndSet(setTimePerPlayer)}
         />
       </div>
       <div className="row-span-1 col-span-1 my-2">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-gray-700 text-sm font-bold">
           Increment
         </label>
         <input

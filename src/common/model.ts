@@ -98,14 +98,6 @@ export interface JoinGameMessage {
   connection?: WebSocket;
   playerId?: string;
 }
-
-export interface UpdateTimeMessage {
-  type: MessageTypes.NOTIFY_TIME;
-  gameId: string;
-  connection?: WebSocket;
-  playerId?: string;
-}
-
 export interface SpectateGameMessage {
   type: MessageTypes.SPECTATE_GAME;
   gameId: string;
@@ -122,20 +114,11 @@ export interface MakeMoveMessage {
   playerId?: string;
 }
 
-interface PlayerTimeoutMessage {
-  type: MessageTypes.PLAYER_TIMEOUT;
-  playerId: string;
-  gameId: string;
-  connection?: WebSocket;
-}
-
 export type Message =
   | RegisterPlayerMessage
   | StartGameMessage
   | JoinGameMessage
   | SpectateGameMessage
-  | UpdateTimeMessage
-  | PlayerTimeoutMessage
   | MakeMoveMessage;
 
 // Responses

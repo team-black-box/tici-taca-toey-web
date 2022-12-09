@@ -54,7 +54,6 @@ const Cell = ({
   game,
 }: CellProps) => {
   const playerSymbol = getSymbol(playerId, game.players);
-
   const boardEnabled =
     game.status === GameStatus.GAME_IN_PROGRESS &&
     playerId === EMPTY_CELL &&

@@ -20,7 +20,7 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   const game = useSelector(getAllGames)[activeGameId];
 
   const timers = game.timers;
-  const activePlayerTurn = turn === playerId;
+  // const activePlayerTurn = turn === playerId;
 
   return (
     <div

@@ -24,21 +24,18 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
 
   return (
     <div
-      className={`flex bg-${symbol.color}-500 flex-row items-center justify-center gap-2 px-4 py-2 my-6 text-lg rounded-full font-bold`}
-      style={{ width: "4rem", height: "1.7rem" }}
+      className={`flex flex-row border-2 border-slate-800 items-center justify-center gap-2 my-6 text-lg rounded-l-2xl rounded-r-2xl font-bold`}
     >
       <div
-        className={`grow text-centertext-black text-sm`}
-        style={{ height: "100%", width: "50%" }}
+        className={`text-center p-3 text-black text-sm bg-${symbol.color}-500 rounded-l-2xl`}
       >
         {symbol.symbol}
       </div>
       <div
-        className={`text-center grow text-sm uppercase bg-white text-${symbol.color}-900`}
-        style={{ height: "100%", width: "50%" }}
+        className={`text-sm p-3 uppercase bg-white text-${symbol.color}-900 rounded-r-2xl`}
       >
         <span>
-          {Math.max(0, timers[playerId].timeLeft / THOUSAND)}
+          {Math.max(0, timers[playerId].timeLeft / THOUSAND).toFixed(2)}
           <span className="text-xs">s</span>
         </span>
       </div>

@@ -48,10 +48,10 @@ const Players = () => {
         <div className="flex flex-row gap-1 justify-center">
           <div className="flex flex-row items-center">
             {currentPlayerCard}
-            {/* <span
+            <span
               className="bg-black m-1"
-              style={{ height: "100%", width: `0.3rem`, margin: "1rem" }}
-            ></span> */}
+              style={{ height: "70%", width: `0.18rem`, margin: "1rem" }}
+            ></span>
           </div>
           <div className="w-full flex flex-row gap-1">{restPlayers}</div>
         </div>

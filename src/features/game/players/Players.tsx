@@ -8,7 +8,6 @@ import {
 import { getCurrentPlayerId } from "../../../redux/currentPlayer";
 import ActivePlayer from "./ActivePlayer";
 import Spectator from "./Spectator";
-import { JsxElement } from "typescript";
 
 const Players = () => {
   const players = useSelector(getActiveGamePlayers);
@@ -46,17 +45,15 @@ const Players = () => {
   return (
     <div className="grid grid-rows-1 grid-cols-1">
       <div className="cols-span-1 rows-span-1 my-4">
-        <div className="flex flex-row gap-2">
-          <div className="flex flex-row justify-start items-center">
+        <div className="flex flex-row gap-1 justify-center">
+          <div className="flex flex-row items-center">
             {currentPlayerCard}
-            <span
+            {/* <span
               className="bg-black m-1"
-              style={{ height: "100%", width: `0.3rem` }}
-            ></span>
+              style={{ height: "100%", width: `0.3rem`, margin: "1rem" }}
+            ></span> */}
           </div>
-          <div className="w-full flex flex-row gap-1 justify-end">
-            {restPlayers}
-          </div>
+          <div className="w-full flex flex-row gap-1">{restPlayers}</div>
         </div>
       </div>
       {spectators.length > 0 && (

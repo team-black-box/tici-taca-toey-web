@@ -23,18 +23,24 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   const activePlayerTurn = turn === playerId;
 
   return (
-    <div className={`border-2 border-${symbol.color}-500 p-1`}>
-      <div className="flex flex-row items-center justify-center gap-2">
-        <div className={`text-${symbol.color}-500 text-center`}>
-          {symbol.symbol}
-        </div>
-        <div
-          className={`text-center h-full w-10 text-sm uppercase text-${symbol.color}-100 flex flex-col items-center justify-center`}
-        >
-          <span className={activePlayerTurn ? "text-red-900" : "text-black"}>
-            {Math.max(0, timers[playerId].timeLeft / THOUSAND)}
-          </span>
-        </div>
+    <div
+      className={`flex bg-${symbol.color}-500 flex-row items-center justify-center gap-2 px-4 py-2 my-6 text-lg rounded-full font-bold`}
+      style={{ width: "4rem", height: "1.7rem" }}
+    >
+      <div
+        className={`grow text-centertext-black text-sm`}
+        style={{ height: "100%", width: "50%" }}
+      >
+        {symbol.symbol}
+      </div>
+      <div
+        className={`text-center grow text-sm uppercase bg-white text-${symbol.color}-900`}
+        style={{ height: "100%", width: "50%" }}
+      >
+        <span>
+          {Math.max(0, timers[playerId].timeLeft / THOUSAND)}
+          <span className="text-xs">s</span>
+        </span>
       </div>
     </div>
   );

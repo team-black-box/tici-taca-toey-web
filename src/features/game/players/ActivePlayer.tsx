@@ -14,16 +14,13 @@ interface ActivePlayer {
 
 const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   const symbol = getSymbol(playerId, players);
-  // const playerName = useSelector(getPlayer(playerId)).name;
   const activeGameId: string = useSelector(getActiveGameId);
   const game = useSelector(getAllGames)[activeGameId];
-
   const timers = game.timers;
-  // const activePlayerTurn = turn === playerId;
 
   return (
     <div
-      className={`flex flex-row border-2 border-slate-800 items-center justify-center gap-2 my-6 text-lg rounded-l-2xl rounded-r-2xl font-bold`}
+      className={`flex flex-row border-2 border-slate-800 items-center justify-center gap-2 text-lg rounded-l-2xl rounded-r-2xl font-bold`}
     >
       <div
         className={`text-center p-3 text-black text-sm bg-${symbol.color}-500 rounded-l-2xl`}

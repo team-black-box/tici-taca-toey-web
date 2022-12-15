@@ -2,7 +2,6 @@ import React from "react";
 import { getSymbol } from "../../../common/symbol";
 import { useSelector } from "react-redux";
 import { getAllGames } from "../../../redux/games";
-// import { getPlayer } from "../../../redux/players";
 import { getActiveGameId } from "../../../redux/currentPlayer";
 
 const THOUSAND = 1000;

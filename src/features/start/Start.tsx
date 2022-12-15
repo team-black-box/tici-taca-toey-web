@@ -73,7 +73,7 @@ const Start = () => {
       </div>
       <div className="row-span-1 col-span-1 my-2">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Time
+          Time Per Player (s)
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -87,7 +87,7 @@ const Start = () => {
       </div>
       <div className="row-span-1 col-span-1 my-2">
         <label className="block text-gray-700 text-sm font-bold">
-          Increment
+          Increment Per Turn
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

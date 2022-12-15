@@ -12,7 +12,7 @@ import Spectator from "./Spectator";
 const Players = () => {
   const players = useSelector(getActiveGamePlayers);
   const spectators = useSelector(getActiveGameSpectator);
-  const currentPlayer: string = useSelector(getCurrentPlayerId);
+  const currentCurrentPlayerId: string = useSelector(getCurrentPlayerId);
   const turn = useSelector(getActiveGameTurn);
 
   const currentPlayerCard: ReactElement[] = [];
@@ -20,7 +20,7 @@ const Players = () => {
 
   (() => {
     players.forEach((each: string) => {
-      if (each === currentPlayer) {
+      if (each === currentCurrentPlayerId) {
         currentPlayerCard.push(
           <ActivePlayer
             key={each}
@@ -47,7 +47,7 @@ const Players = () => {
       <div className="cols-span-1 rows-span-1 my-4">
         <div className="flex flex-row gap-1 justify-center">
           <div className="flex flex-row items-center">
-            <div className="order-1"> {currentPlayerCard}</div>
+            <div> {currentPlayerCard}</div>
             <span
               className="bg-black m-1 order-last"
               style={{ height: "70%", width: `0.18rem`, margin: "1rem" }}

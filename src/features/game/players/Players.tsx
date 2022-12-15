@@ -1,10 +1,6 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import {
-  getActiveGamePlayers,
-  getActiveGameSpectator,
-  getActiveGameTurn,
-} from "../../../redux/games";
+import { getActiveGamePlayers, getActiveGameTurn } from "../../../redux/games";
 import { getCurrentPlayerId } from "../../../redux/currentPlayer";
 import ActivePlayer from "./ActivePlayer";
 

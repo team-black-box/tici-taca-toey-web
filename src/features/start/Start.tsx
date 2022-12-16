@@ -80,8 +80,8 @@ const Start = () => {
           type="number"
           placeholder="Players"
           value={timePerPlayer}
-          min={0}
-          max={100000}
+          min={1}
+          max={300}
           onChange={extractValueAndSet(setTimePerPlayer)}
         />
       </div>

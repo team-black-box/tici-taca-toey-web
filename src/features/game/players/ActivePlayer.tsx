@@ -3,8 +3,7 @@ import { getSymbol } from "../../../common/symbol";
 import { useSelector } from "react-redux";
 import { getAllGames } from "../../../redux/games";
 import { getActiveGameId } from "../../../redux/currentPlayer";
-
-const THOUSAND = 1000;
+import { formattedTime } from "../../../common/timer";
 
 interface ActivePlayer {
   playerId: string;
@@ -31,7 +30,7 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
         className={`text-sm p-3 uppercase bg-white text-${symbol.color}-900 rounded-r-2xl`}
       >
         <span>
-          {Math.max(0, timers[playerId].timeLeft / THOUSAND).toFixed(2)}
+          {formattedTime(timers[playerId].timeLeft)}
           <span className="text-xs">s</span>
         </span>
       </div>

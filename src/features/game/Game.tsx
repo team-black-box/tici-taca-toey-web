@@ -11,8 +11,8 @@ const Game = () => {
   return activeGameId ? (
     <div className="flex flex-col">
       <Status />
-      <Board />
       <Players />
+      <Board />
     </div>
   ) : (
     <div className="flex flex-col">No Game Selected</div>

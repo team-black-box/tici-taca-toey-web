@@ -1,8 +1,9 @@
 import React from "react";
 import { getSymbol } from "../../../common/symbol";
-import { generateIdenticon } from "../../../common/identicon";
 import { useSelector } from "react-redux";
-import { getPlayer } from "../../../redux/players";
+import { getAllGames } from "../../../redux/games";
+import { getActiveGameId } from "../../../redux/currentPlayer";
+import { formattedTime } from "../../../common/timer";
 
 interface ActivePlayer {
   playerId: string;
@@ -12,30 +13,27 @@ interface ActivePlayer {
 
 const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
   const symbol = getSymbol(playerId, players);
-  const playerName = useSelector(getPlayer(playerId)).name;
-  const activePlayerTurn = turn === playerId;
+  const activeGameId: string = useSelector(getActiveGameId);
+  const game = useSelector(getAllGames)[activeGameId];
+  const timers = game?.timers;
+
   return (
     <div
-      className={`flex flex-col mx-2 ${
-        activePlayerTurn && `border-2 border-${symbol.color}-500 rounded-lg`
-      }`}
+      className={`flex flex-row border-2 border-slate-800 items-center justify-center gap-2 text-lg rounded-l-2xl rounded-r-2xl font-bold`}
     >
-      <div className={`text-${symbol.color}-500 text-center`}>
-        {symbol.symbol}
+      <div
+        className={`text-center p-3 text-black text-sm bg-${symbol?.color}-500 rounded-l-2xl`}
+      >
+        {symbol?.symbol}
       </div>
-      <div className="text-center mx-5">
-        <img
-          src={generateIdenticon(playerName ? playerName : "", 32)}
-          alt="identicon"
-        />
+      <div
+        className={`text-sm p-3 uppercase bg-white text-${symbol?.color}-900 rounded-r-2xl`}
+      >
+        <span>
+          {formattedTime(timers[playerId]?.timeLeft)}
+          <span className="text-xs">s</span>
+        </span>
       </div>
-      {activePlayerTurn && (
-        <div
-          className={`text-center px-2 py-1 mt-2 text-sm bg-${symbol.color}-500 uppercase text-${symbol.color}-100`}
-        >
-          Turn
-        </div>
-      )}
     </div>
   );
 };

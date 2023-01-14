@@ -40,7 +40,6 @@ socket.addEventListener("open", (event) => {
 });
 
 socket.addEventListener("message", (event) => {
-  console.log("Message from server:" + event.data);
   store.dispatch({ ...JSON.parse(event.data), _socketResponse: true });
 });
 

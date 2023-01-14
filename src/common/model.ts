@@ -1,5 +1,9 @@
 import WebSocket from "ws";
 
+export interface TimerBase {
+  isRunning: boolean;
+  timeLeft: number;
+}
 export interface Game {
   gameId: string;
   name: string;
@@ -13,6 +17,9 @@ export interface Game {
   winningSequence: WinningSequence[];
   status: GameStatus;
   turn: string;
+  timers: Record<string, TimerBase>;
+  timePerPlayer: number;
+  incrementPerPlayer: number;
 }
 
 interface WinningSequence {
@@ -81,6 +88,8 @@ export interface StartGameMessage {
   connection?: WebSocket;
   playerId?: string;
   gameId?: string;
+  timePerPlayer?: number;
+  incrementPerPlayer?: number;
 }
 
 export interface JoinGameMessage {
@@ -89,7 +98,6 @@ export interface JoinGameMessage {
   connection?: WebSocket;
   playerId?: string;
 }
-
 export interface SpectateGameMessage {
   type: MessageTypes.SPECTATE_GAME;
   gameId: string;
@@ -126,6 +134,7 @@ export interface GameActionResponse extends GameState {
     | MessageTypes.MAKE_MOVE
     | MessageTypes.SPECTATE_GAME
     | MessageTypes.PLAYER_DISCONNECT
+    | MessageTypes.NOTIFY_TIME
     | MessageTypes.GAME_COMPLETE;
 }
 
@@ -171,6 +180,8 @@ export enum MessageTypes {
   UPDATE_NAME = "UPDATE_NAME", // client only
   CONNECTED_TO_SERVER = "CONNECTED_TO_SERVER", // client only
   SET_ACTIVE_GAME = "SET_ACTIVE_GAME", // client only
+  NOTIFY_TIME = "NOTIFY_TIME",
+  PLAYER_TIMEOUT = "PLAYER_TIMEOUT",
 }
 
 export enum ErrorCodes {
@@ -191,4 +202,5 @@ export enum GameStatus {
   GAME_WON = "GAME_WON",
   GAME_ENDS_IN_A_DRAW = "GAME_ENDS_IN_A_DRAW",
   GAME_ABANDONED = "GAME_ABANDONED",
+  GAME_WON_BY_TIMEOUT = "GAME_WON_BY_TIMEOUT",
 }

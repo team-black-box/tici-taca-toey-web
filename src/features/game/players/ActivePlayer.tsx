@@ -24,7 +24,7 @@ const ActivePlayer = ({ playerId, players, turn }: ActivePlayer) => {
       <div
         className={`text-center p-3 text-black text-sm bg-${symbol?.color}-500 rounded-l-2xl`}
       >
-        {symbol.symbol}
+        {symbol?.symbol}
       </div>
       <div
         className={`text-sm p-3 uppercase bg-white text-${symbol?.color}-900 rounded-r-2xl`}

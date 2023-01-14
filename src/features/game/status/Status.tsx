@@ -33,7 +33,7 @@ const Status = () => {
   const game: Game = useSelector(getActiveGame);
   const spectators = useSelector(getActiveGameSpectator);
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center gap-2">
       <div className="text-center px-4 py-2 text-4xl">{game.name}</div>
       <GameStatusTag
         status={game.status}
@@ -44,9 +44,9 @@ const Status = () => {
         game.status
       ) && <Share gameId={game.gameId} gameStatus={game.status} />}
 
-      <div className="flex flex-row justify-center items-center gap-1">
-        <i className="fas fa-eye text-red-500" />
-        <div className="text-lg text-red-500">{spectators.length}</div>
+      <div className="flex flex-row justify-center tems-center gap-1">
+        <i className="fas fa-eye text-black-500" />
+        <div className="text-lg text-black-500">{spectators.length}</div>
       </div>
     </div>
   );
